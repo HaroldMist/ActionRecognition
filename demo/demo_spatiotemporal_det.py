@@ -150,23 +150,29 @@ def pack_result(human_detection, result, img_h, img_w):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='MMAction2 demo')
-    parser.add_argument('video', help='video file/url')
+    parser.add_argument('video', 
+                        default='/root/autodl-tmp/data/multisports/test/football/v__qFWBYktaRw_c001.mp4',
+                        help='video file/url')
     parser.add_argument('out_filename', help='output filename')
     parser.add_argument(
         '--config',
-        default=('configs/detection/slowonly/slowonly_kinetics400-pretrained-'
-                 'r101_8xb16-8x8x1-20e_ava21-rgb.py'),
+        # default=('configs/detection/slowonly/slowonly_kinetics400-pretrained-'
+        #          'r101_8xb16-8x8x1-20e_ava21-rgb.py'),
+        default=('/root/mmaction2/configs/detection/slowfast/slowfast_kinetics400-pretrained'
+                 '-r50_8xb16-4x16x1-8e_multisports-rgb.py'),
         help='spatialtemporal detection model config file path')
     parser.add_argument(
         '--checkpoint',
-        default=('https://download.openmmlab.com/mmaction/detection/ava/'
-                 'slowonly_omnisource_pretrained_r101_8x8x1_20e_ava_rgb/'
-                 'slowonly_omnisource_pretrained_r101_8x8x1_20e_ava_rgb_'
-                 '20201217-16378594.pth'),
+        # default=('https://download.openmmlab.com/mmaction/detection/ava/'
+        #          'slowonly_omnisource_pretrained_r101_8x8x1_20e_ava_rgb/'
+        #          'slowonly_omnisource_pretrained_r101_8x8x1_20e_ava_rgb_'
+        #          '20201217-16378594.pth'),
+        default=('/root/mmaction2/checkpoints/slowfast_kinetics400-pretrained'
+                 '-r50_8xb16-4x16x1-8e_multisports-rgb_20230320-af666368.pth'),
         help='spatialtemporal detection model checkpoint file/url')
     parser.add_argument(
         '--det-config',
-        default='demo/demo_configs/faster-rcnn_r50_fpn_2x_coco_infer.py',
+        default='/root/mmaction2/demo/demo_configs/faster-rcnn_r50_fpn_2x_coco_infer.py',
         help='human detection config file path (from mmdet)')
     parser.add_argument(
         '--det-checkpoint',
@@ -192,7 +198,8 @@ def parse_args():
         help='the threshold of human action score')
     parser.add_argument(
         '--label-map',
-        default='tools/data/ava/label_map.txt',
+        # default='tools/data/ava/label_map.txt',
+        default='/root/mmaction2/tools/data/multisports/label_map.txt',
         help='label map file')
     parser.add_argument(
         '--device', type=str, default='cuda:0', help='CPU/CUDA device option')

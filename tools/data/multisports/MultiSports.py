@@ -105,6 +105,7 @@ class MultiSports(datasets.GeneratorBasedBuilder):
         # By default the archives will be extracted and a path to a cached folder where they are extracted is returned instead of the archive
         video_urls = _VIDEO_URLS[self.config.name]
         meta_urls = _META_URLS[self.config.name]
+        # !
         video_dir = dl_manager.download_and_extract(video_urls)
         meta_dir = dl_manager.download_and_extract(meta_urls)
         return [
